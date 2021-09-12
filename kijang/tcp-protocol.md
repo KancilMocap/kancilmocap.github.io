@@ -3,6 +3,7 @@
 To communicate between Kijang's TCP server and its clients, the client would connected to the designated TCP port on the server. Each request would be sent in its own TCP packet.
 
 The contents of each request are as follows (in bytes):
+
 | Start | End | Description |
 |-|-|-|
 | 1 | 2 | Module that the packet was sent for |
