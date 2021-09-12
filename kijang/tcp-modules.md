@@ -146,3 +146,31 @@ The following module codes are designated for the following modules:
 |-|-|-|
 | 0000 | 000F | Output IO devices |
 | 0010 | 001F | Input IO devices |
+
+### Output IO Devices
+
+| Byte | Designation | Contents |
+|-|-|-|
+| 0000 | Request whether the block of codes is blocked | - |
+| 0001 | Request access to block | 2 bytes on the type of hashing used, remaining bytes is hashed password |
+| 0002 | Request all available audio, video and motion devices | TBD |
+| 0003 | Request all available audio devices | TBD |
+| 0004 | Request all available video devices | TBD |
+| 0005 | Request all available motion devices | TBD |
+| 0006 | Request a specified audio device | TBD |
+| 0007 | Request a specified video device | TBD |
+| 0008 | Request a specified motion device | TBD |
+
+### Input IO Devices
+
+| Byte | Designation | Contents |
+|-|-|-|
+| 0010 | Request whether the block of codes is blocked | - |
+| 0011 | Request access to block | 2 bytes on the type of hashing used, remaining bytes is hashed password |
+| 0012 | Reserved | - |
+| 0013 | Request to add audio device | - |
+| 0014 | Request to add video device | - |
+| 0015 | Request to add motion device | - |
+| 0016 | Request to remove audio device | TBD |
+| 0017 | Request to remove video device | TBD |
+| 0018 | Request to remove motion device | TBD |
