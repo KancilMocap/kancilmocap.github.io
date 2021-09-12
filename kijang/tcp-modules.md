@@ -14,7 +14,7 @@ The following module codes are designated for the following modules:
 
 | Start | End | Designation |
 |-|-|-|
-| 0000 | 00FF | Diagnostic / basic codes |
+| 0000 | 000F | Diagnostic / basic codes |
 | 0010 | 002F | System Information |
 | F000 | FFFF | Error codes |
 
@@ -28,11 +28,11 @@ The following module codes are designated for the following modules:
 | 0003 | (Server -> Client) Ping | - |
 | 0004 | Returns server name | String containing server name |
 | 0005 | Returns server version | String containing semver compliant server version |
-| 00FE | Disconnects client | - |
-| 00FF | Client disconnection request received | - |
+| 000E | Disconnects client | - |
+| 000F | Client disconnection request received | - |
 
-- Once 00FF is sent, future requests from the client would be ignored.
-- Once 00FE is sent, only 00FE response from the client would be acknowledged.
+- Once 000F is sent, future requests from the client would be ignored.
+- Once 00E is sent, only 000E response from the client would be acknowledged.
 
 ### System Information
 
@@ -67,7 +67,7 @@ The following module codes are designated for the following modules:
 
 | Start | End | Designation |
 |-|-|-|
-| 0000 | 00FF | Diagnostic / basic codes |
+| 0000 | 000F | Diagnostic / basic codes |
 | 0010 | 002F | System Information |
 
 ### Diagnostic / Basic Codes
@@ -82,11 +82,11 @@ The following module codes are designated for the following modules:
 | 0003 | (Server -> Client) Pong | - |
 | 0004 | Request server name | - |
 | 0005 | Request server version | - |
-| 00FE | Server disconnection request received | - |
-| 00FF | Request disconnect from server | - |
+| 000E | Server disconnection request received | - |
+| 000F | Request disconnect from server | - |
 
-- Once 00FE is sent, future requests from the server would be ignored.
-- Once 00FF is sent, only 00FF response from the server would be acknowledged.
+- Once 000E is sent, future requests from the server would be ignored.
+- Once 000F is sent, only 000F response from the server would be acknowledged.
 
 ### System Information
 
@@ -107,4 +107,42 @@ The following module codes are designated for the following modules:
 
 ## Kijang - FFFE
 
+| Start | End | Designation |
+|-|-|-|
+| 0000 | 000F | Output IO devices |
+| 0010 | 001F | Input IO devices |
+
+### Output IO Devices
+
+| Byte | Designation | Contents |
+|-|-|-|
+| 0000 | Returns of the block of codes is blocked | 2 bytes response on whether the block is password protected, as well as the type of hashing required |
+| 0001 | Returns whether the block access is granted | 1 byte response on whether access has been granted for the block |
+| 0002 | Returns all available audio, video and motion devices | TBD |
+| 0003 | Returns all available audio devices | TBD |
+| 0004 | Returns all available video devices | TBD |
+| 0005 | Returns all available motion devices | TBD |
+| 0006 | Returns the specified audio device | TBD |
+| 0007 | Returns the specified video device | TBD |
+| 0008 | Returns the specified motion device | TBD |
+
+### Input IO Devices
+
+| Byte | Designation | Contents |
+|-|-|-|
+| 0010 | Returns of the block of codes is blocked | 2 bytes response on whether the block is password protected, as well as the type of hashing required |
+| 0011 | Returns whether the block access is granted | 1 byte response on whether access has been granted for the block |
+| 0012 | Reserved | - |
+| 0013 | Returns port for audio device to bind to | 2 bytes representing uint16 port number |
+| 0014 | Returns port for video device to bind to | 2 bytes representing uint16 port number |
+| 0015 | Returns port for motion device to bind to | 2 bytes representing uint16 port number |
+| 0016 | Audio device removal acknowledged | - |
+| 0017 | Video device removal acknowledged | - |
+| 0018 | Motion device removal acknowledged | - |
+
 ## Pilanduk / KancilMocap - 7FFD/7FFE
+
+| Start | End | Designation |
+|-|-|-|
+| 0000 | 000F | Output IO devices |
+| 0010 | 001F | Input IO devices |
