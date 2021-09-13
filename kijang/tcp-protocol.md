@@ -10,9 +10,8 @@ The contents of each request are as follows (in bytes):
 | 3 | 4 | Communication code |
 | 5 | 8 | Client ID |
 | 9 | 16 | Request ID |
-| 17 | 18 | Packet Count |
-| 19 | 22 | Byte size of remaining packets |
-| 29 | - | Data of request |
+| 17 | 20 | Packet Count |
+| 21 | - | Data of request |
 
 - For bytes 1-2, the first bit represents whether the module is a request from the client to the server (0) or from the server to the client (1). Although there would not be any collision with module names, this is done to allow for the packet data to be more easily readable.
 - On the first request from the client to the server, the client can use a client ID of \0 as it had not been assigned an ID yet.
