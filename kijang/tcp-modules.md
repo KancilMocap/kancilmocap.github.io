@@ -111,6 +111,7 @@ The following module codes are designated for the following modules:
 |-|-|-|
 | 0000 | 000F | Output IO devices |
 | 0010 | 001F | Input IO devices |
+| 0020 | 002F | Plugin management |
 
 ### Output IO Devices
 
@@ -140,12 +141,28 @@ The following module codes are designated for the following modules:
 | 0017 | Video device removal acknowledged | - |
 | 0018 | Motion device removal acknowledged | - |
 
+### Plugin Management
+
+| Byte | Designation | Contents |
+|-|-|-|
+| 0020 | Returns of the block of codes is blocked | 2 bytes response on whether the block is password protected, as well as the type of hashing required |
+| 0021 | Returns whether the block access is granted | 1 byte response on whether access has been granted for the block |
+| 0022 | Returns all plugins on Kijang | A JSON file containing the metadata of all plugins currently installed on the server |
+| 0023 | Returns metadata on the specified plugin on Kijang | A JSON file containing the metadata of the plugin specified, returns nothing if the plugin is not installed |
+| 0024 | Acknowleges the request to enable / disable the specified plugin | 1 byte response on whether the plugin was successfully enabled or disabled, followed by its corresponding error if any |
+| 0025 | Returns type of plugin needed (.dll, .dylib, .so) | 1 byte response on the type of plugin needed |
+| 0024 | Returns status of online plugin installation | 1 byte representing status of plugin install, followed by its corresponding error if any |
+| 0025 | Returns port for plugin data to be transferred | 1 byte representing whether request is approved, followed by 2 bytes representing uint16 port number |
+| 0026 | Returns status of offline plugin installation | 1 byte representing status of plugin install, followed by its corresponding error if any |
+| 0027 | Acknowleges the request to delete the specified plugin | 1 byte response on whether the plugin was successfully removed, followed by its corresponding error if any |
+
 ## Pilanduk / KancilMocap - 7FFD/7FFE
 
 | Start | End | Designation |
 |-|-|-|
 | 0000 | 000F | Output IO devices |
 | 0010 | 001F | Input IO devices |
+| 0020 | 002F | Plugin management |
 
 ### Output IO Devices
 
@@ -174,3 +191,18 @@ The following module codes are designated for the following modules:
 | 0016 | Request to remove audio device | TBD |
 | 0017 | Request to remove video device | TBD |
 | 0018 | Request to remove motion device | TBD |
+
+### Plugin Management
+
+| Byte | Designation | Contents |
+|-|-|-|
+| 0020 | Request whether the block of codes is blocked | - |
+| 0021 | Request access to block | 2 bytes on the type of hashing used, remaining bytes is hashed password |
+| 0022 | Request all plugins on Kijang | - |
+| 0023 | Request metadata on the specified plugin on Kijang | 4 bytes representing ID of plugin |
+| 0024 | Request enabling / disabling plugins and its dependencies | 4 bytes representing ID of plugin, followed by 1 byte on whether to enable / disable it |
+| 0025 | Request type of plugin needed (.dll, .dylib, .so) | - |
+| 0024 | Request online plugin installation | URL of repository for plugin, or pointing towards a .dll, .dylib or .so file |
+| 0025 | Request pysical plugin transfer | 4 bytes representing ID of plugin, 1 byte representing type of plugin, 1 byte representing hash type, remaining data is hash of resulting data |
+| 0026 | Reserved | - |
+| 0027 | Delete specific plugin | 4 bytes representing ID of plugin |
