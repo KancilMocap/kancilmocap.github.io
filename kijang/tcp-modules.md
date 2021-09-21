@@ -7,10 +7,13 @@ The following module codes are designated for the following modules:
 | 7FFD | KancilMocap |
 | 7FFE | Pilanduk |
 | 7FFF | Control module (client) |
-| FFFE | Kijang |
-| FFFF | Control module (server) |
+| FFFD | Kijang |
+| FFFE | Control module (server) |
+| FFFF | Async response (internal) |
 
-## Control Module (Server) - FFFF
+FFFF module codes are reserved for internal communications in servers and clients respectively. Once the request is received, the server / client will wait until a response is received, or until a timeout is received.
+
+## Control Module (Server) - FFFE
 
 | Start | End | Designation |
 |-|-|-|
@@ -63,7 +66,7 @@ The following module codes are designated for the following modules:
 | F005 | Timeout | uint32 representing duration that the client would be timed out for (in ms) |
 | F006 | Permission denied |
 
-## Control Module (Client)
+## Control Module (Client) - 7FFF
 
 | Start | End | Designation |
 |-|-|-|
@@ -105,7 +108,7 @@ The following module codes are designated for the following modules:
 | 0022 | Request OS type | - |
 | 0023 | Request OS version | - |
 
-## Kijang - FFFE
+## Kijang - FFFD
 
 | Start | End | Designation |
 |-|-|-|
