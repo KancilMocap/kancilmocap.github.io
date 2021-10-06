@@ -32,10 +32,9 @@ FFFF module codes are reserved for internal communications in servers and client
 | 0004 | Returns server name | String containing server name |
 | 0005 | Returns server version | String containing semver compliant server version |
 | 000E | Disconnects client | - |
-| 000F | Client disconnection request received | - |
+| 000F | Reserver | - |
 
-- Once 000F is sent, future requests from the client would be ignored.
-- Once 00E is sent, only 000E response from the client would be acknowledged.
+- Once 000E is sent, future requests from the client would be ignored.
 
 ### System Information
 
@@ -85,11 +84,10 @@ FFFF module codes are reserved for internal communications in servers and client
 | 0003 | (Server -> Client) Pong | - |
 | 0004 | Request server name | - |
 | 0005 | Request server version | - |
-| 000E | Server disconnection request received | - |
+| 000E | Reserved | - |
 | 000F | Request disconnect from server | - |
 
-- Once 000E is sent, future requests from the server would be ignored.
-- Once 000F is sent, only 000F response from the server would be acknowledged.
+- Once 000F is sent, future requests from the server would be ignored.
 
 ### System Information
 
