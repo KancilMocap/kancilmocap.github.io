@@ -16,3 +16,7 @@ The following pages contain information about the protocols that are used to tra
 - [Audio](./udp-audio)
 - [Video](./udp-video)
 - [Motion](./udp-motion)
+
+## Warning: Usage of Protocol Across Internet
+
+Although it is technically possible to use the protocol across the public internet, do note that the protocol by itself does not come with any form of encryption. Thus, any data sent via the protocol could be intercepted and monitored.
