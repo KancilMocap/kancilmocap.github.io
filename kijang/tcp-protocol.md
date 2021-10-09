@@ -1,6 +1,6 @@
-# Kijang TCP Protocol
+# Kijang TCP / Serial Protocol
 
-To communicate between Kijang's TCP server and its clients, the client would connected to the designated TCP port on the server. Each request would be sent in its own TCP packet.
+To communicate between Kijang's server and its clients, the client would connected to the designated TCP port on the server, or via a serial port. Each request would be sent in its own packet using the below protocol.
 
 The contents of each request are as follows (in bytes):
 
