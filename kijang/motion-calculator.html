@@ -59,7 +59,7 @@
             var cableSpeed = document.getElementById("cable-speed").value
             var cableUnit = document.getElementById("cable-unit").value
             var realCableSpeed = cableSpeed * cableUnit
-            var maxDataPoints = packetMaxBytes / (floatPrecision * 3)
+            var maxDataPoints = Math.floor(packetMaxBytes / (floatPrecision * 3))
             if (dataPoints > maxDataPoints) {
                 dataPoints = maxDataPoints
                 document.getElementById("data-points").value = maxDataPoints
