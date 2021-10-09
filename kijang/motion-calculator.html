@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<head>
+    <title>UDP Motion Protocol Calculator</title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <h1>UDP Motion Protocol Calculator</h1>
+    <form>
+        <label>Float Precision</label>
+        <select id="float-precision" onchange="updateValues();">
+            <option value="4">binary32 / single</option>
+            <option value="8">binary64 / double</option>
+        </select>
+        <br><br>
+        <label>Number of users</label>
+        <input id="user-count" type="number" onchange="updateValues();" value="1" min="1">
+        <br><br>
+        <label>Data points</label>
+        <input id="data-points" type="number" onchange="updateValues();" value="50" min="1">
+        <br><br>
+        <label>Sample rate</label>
+        <input id="sr" type="number" onchange="updateValues();" value="1" min="0">
+        <select id="sr-unit" onchange="updateValues();">
+            <option value="1">Hz</option>
+            <option selected="selected" value="1000">kHz</option>
+            <option value="1000000">MHz</option>
+        </select>
+        <br><br>
+        
+        <label>Cable speed</label>
+        <input id="cable-speed" type="number" onChange="updateValues();" value="1" min="0">
+        <select id="cable-unit" onchange="updateValues();">
+            <option value="1000">kbps</option>
+            <option value="1000000">Mbps</option>
+            <option selected="selected" value="1000000000">Gbps</option>
+        </select>
+        <br><br>
+    </form>
+
+    <div>Capacity used per user: <div id="user-capacity-value"></div> <div id="user-capacity-unit"></div></div> 
+    <br>
+    <div>Total network capacity: <div id="capacity-value"></div> <div id="capacity-unit"></div></div>
+    <br>
+    <div>Max sample rate: <div id="max-sr-value"></div> <div id="max-sr-unit"></div></div>
+    <br>
+
+    <sub>Capacity used and network capacity is calculated based on sample rate, max sample rate is calculated based on cable speed.</sub>
+    <sub>This calculator assumes that no other client-server connections exist.</sub>
+
+    <script>
+        function updateValues() {
+            var floatPrecision = document.getElementById("float-precision").value
+            var userCount = document.getElementById("user-count").value
+            var dataPoints = document.getElementById("data-points").value
+            var sampleRate = document.getElementById("sr").value
+            var sampleRateUnit = document.getElementById("sr-unit").value
+            var realSampleRate = sampleRate * sampleRateUnit
+            var cableSpeed = document.getElementById("cable-speed").value
+            var cableUnit = document.getElementById("cable-unit").value
+            var realCableSpeed = cableSpeed * cableUnit
+
+            var perUserCapacity = Math.ceil(realSampleRate * dataPoints * floatPrecision * 3) // Bytes / second
+            var userCapacityUnit = Math.log(perUserCapacity) / Math.log(1000)
+            if (userCapacityUnit <= 1) {
+                document.getElementById("user-capacity-unit").innerHTML = "bytes per second"
+            } else if (userCapacityUnit <= 2) {
+                document.getElementById("user-capacity-unit").innerHTML = "kbps"
+                perUserCapacity /= 1000
+            } else if (userCapacityUnit <= 3) {
+                perUserCapacity = Math.ceil(perUserCapacity / 1000)
+                document.getElementById("user-capacity-unit").innerHTML = "Mbps"
+                perUserCapacity /= 1000
+            } else {
+                perUserCapacity = Math.ceil(perUserCapacity / 1000000)
+                document.getElementById("user-capacity-unit").innerHTML = "Gbps"
+                perUserCapacity /= 1000
+            }
+            document.getElementById("user-capacity-value").innerHTML = perUserCapacity
+
+            var totalCapacity = Math.ceil(realSampleRate * dataPoints * floatPrecision * 3 * userCount) // Bytes / second
+            var totalCapacityUnit = Math.log(totalCapacity) / Math.log(1000)
+            if (totalCapacityUnit <= 1) {
+                document.getElementById("capacity-unit").innerHTML = "bytes per second"
+            } else if (totalCapacityUnit <= 2) {
+                document.getElementById("capacity-unit").innerHTML = "kbps"
+                totalCapacity /= 1000
+            } else if (totalCapacityUnit <= 3) {
+                totalCapacity = Math.ceil(totalCapacity / 1000)
+                document.getElementById("capacity-unit").innerHTML = "Mbps"
+                totalCapacity /= 1000
+            } else {
+                totalCapacity = Math.ceil(totalCapacity / 1000000)
+                document.getElementById("capacity-unit").innerHTML = "Gbps"
+                totalCapacity /= 1000
+            }
+            document.getElementById("capacity-value").innerHTML = totalCapacity
+
+            var maxSR = Math.floor(realCableSpeed / (dataPoints * floatPrecision * 3 * userCount)) // Hz
+            var srUnit = Math.log(maxSR) / Math.log(1000)
+            if (srUnit <= 1) {
+                document.getElementById("max-sr-unit").innerHTML = "Hz"
+            } else if (srUnit <= 2) {
+                document.getElementById("max-sr-unit").innerHTML = "kHz"
+                maxSR /= 1000
+            } else {
+                maxSR = Math.floor(maxSR / 1000)
+                document.getElementById("max-sr-unit").innerHTML = "MHz"
+                maxSR /= 1000
+            }
+            document.getElementById("max-sr-value").innerHTML = maxSR
+        }
+
+        window.onload = updateValues()
+    </script>
+</body>
