@@ -37,6 +37,6 @@ Tracking another object with 2 data points using binary32 would result in the fo
 | 17 | 20 | Data Point 2, Y coordinate |
 | 21 | 24 | Data Point 2, Z coordinate |
 
-A calculator to calculate the required ethernet capacity as well as the maximum possible sample rate would be created soon. 
+A calculator to calculate the required ethernet capacity as well as the maximum possible sample rate could be found [here](./motion-calculator.html).
 
 The order of the data points and their corresponding meaning shoould be agreed upon by the client and server externally. In Kijang, motion presets identified by a 4 byte unsigned integer (quint32) are used to represent a set of data points.
