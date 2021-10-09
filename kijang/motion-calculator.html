@@ -49,6 +49,7 @@
 
     <script>
         function updateValues() {
+            var packetMaxBytes = 65507 // IPv4
             var floatPrecision = document.getElementById("float-precision").value
             var userCount = document.getElementById("user-count").value
             var dataPoints = document.getElementById("data-points").value
@@ -58,6 +59,11 @@
             var cableSpeed = document.getElementById("cable-speed").value
             var cableUnit = document.getElementById("cable-unit").value
             var realCableSpeed = cableSpeed * cableUnit
+            var maxDataPoints = packetMaxBytes / (floatPrecision * 3)
+            if (dataPoints > maxDataPoints) {
+                dataPoints = maxDataPoints
+                document.getElementById("data-points").value = maxDataPoints
+            }
 
             var perUserCapacity = Math.ceil(realSampleRate * dataPoints * floatPrecision * 3) // Bytes / second
             var userCapacityUnit = Math.log(perUserCapacity) / Math.log(1000)
