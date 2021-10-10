@@ -19,7 +19,7 @@
         <input id="data-points" type="number" onchange="updateValues();" value="120" min="1">
         <br><br>
         <label>Transformations</label>
-        <input id="data-points" type="number" onchange="updateValues();" value="50" min="1">
+        <input id="transformations" type="number" onchange="updateValues();" value="50" min="1">
         <br><br>
         <label>Sample rate</label>
         <input id="sr" type="number" onchange="updateValues();" value="1" min="0">
@@ -56,7 +56,7 @@
             var floatPrecision = document.getElementById("float-precision").value
             var userCount = document.getElementById("user-count").value
             var dataPoints = document.getElementById("data-points").value
-            var transformations = document.getElementById("data-points").value
+            var transformations = document.getElementById("transformations").value
             var sampleRate = document.getElementById("sr").value
             var sampleRateUnit = document.getElementById("sr-unit").value
             var realSampleRate = sampleRate * sampleRateUnit
