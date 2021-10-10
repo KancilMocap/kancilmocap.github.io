@@ -16,7 +16,7 @@
         <input id="user-count" type="number" onchange="updateValues();" value="1" min="1">
         <br><br>
         <label>Data points</label>
-        <input id="data-points" type="number" onchange="updateValues();" value="50" min="1">
+        <input id="data-points" type="number" onchange="updateValues();" value="120" min="1">
         <br><br>
         <label>Transformations</label>
         <input id="data-points" type="number" onchange="updateValues();" value="50" min="1">
@@ -105,7 +105,7 @@
             }
             document.getElementById("capacity-value").innerHTML = totalCapacity
 
-            var maxSR = Math.floor(realCableSpeed / (floatPrecision * (dataPoints * 3 + transformations) * userCount) // Hz
+            var maxSR = Math.floor(realCableSpeed / (floatPrecision * (dataPoints * 3 + transformations) * userCount)) // Hz
             var srUnit = Math.log(maxSR) / Math.log(1000)
             if (srUnit <= 1) {
                 document.getElementById("max-sr-unit").innerHTML = "Hz"
