@@ -18,6 +18,9 @@
         <label>Data points</label>
         <input id="data-points" type="number" onchange="updateValues();" value="50" min="1">
         <br><br>
+        <label>Transformations</label>
+        <input id="data-points" type="number" onchange="updateValues();" value="50" min="1">
+        <br><br>
         <label>Sample rate</label>
         <input id="sr" type="number" onchange="updateValues();" value="1" min="0">
         <select id="sr-unit" onchange="updateValues();">
@@ -49,10 +52,11 @@
 
     <script>
         function updateValues() {
-            var packetMaxBytes = 65507 // IPv4
+            var packetMaxBytes = 65507 - 1 // IPv4 max size - 1 byte header
             var floatPrecision = document.getElementById("float-precision").value
             var userCount = document.getElementById("user-count").value
             var dataPoints = document.getElementById("data-points").value
+            var transformations = document.getElementById("data-points").value
             var sampleRate = document.getElementById("sr").value
             var sampleRateUnit = document.getElementById("sr-unit").value
             var realSampleRate = sampleRate * sampleRateUnit
@@ -65,7 +69,7 @@
                 document.getElementById("data-points").value = maxDataPoints
             }
 
-            var perUserCapacity = Math.ceil(realSampleRate * dataPoints * floatPrecision * 3) // Bytes / second
+            var perUserCapacity = Math.ceil(realSampleRate * floatPrecision * (dataPoints * 3 + transformations)) // Bytes / second
             var userCapacityUnit = Math.log(perUserCapacity) / Math.log(1000)
             if (userCapacityUnit <= 1) {
                 document.getElementById("user-capacity-unit").innerHTML = "bytes per second"
@@ -83,7 +87,7 @@
             }
             document.getElementById("user-capacity-value").innerHTML = perUserCapacity
 
-            var totalCapacity = Math.ceil(realSampleRate * dataPoints * floatPrecision * 3 * userCount) // Bytes / second
+            var totalCapacity = Math.ceil(realSampleRate * floatPrecision * (dataPoints * 3 + transformations) * userCount) // Bytes / second
             var totalCapacityUnit = Math.log(totalCapacity) / Math.log(1000)
             if (totalCapacityUnit <= 1) {
                 document.getElementById("capacity-unit").innerHTML = "bytes per second"
@@ -101,7 +105,7 @@
             }
             document.getElementById("capacity-value").innerHTML = totalCapacity
 
-            var maxSR = Math.floor(realCableSpeed / (dataPoints * floatPrecision * 3 * userCount)) // Hz
+            var maxSR = Math.floor(realCableSpeed / (floatPrecision * (dataPoints * 3 + transformations) * userCount) // Hz
             var srUnit = Math.log(maxSR) / Math.log(1000)
             if (srUnit <= 1) {
                 document.getElementById("max-sr-unit").innerHTML = "Hz"
