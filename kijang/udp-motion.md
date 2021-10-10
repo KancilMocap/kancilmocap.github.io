@@ -9,7 +9,16 @@ The coordinates and units system follows that of glTF (See https://www.khronos.o
 - All angles are in radians
 - Positive rotation is counterclockwise
 
-Each UDP packet consist of multiple segments of data points, with each data point consisting of 3 IEEE-754 floats representing the absolute X, Y and Z coordinate of the data point. The float values can either be binary32 or binary64, which should be agreed upon between the client and server via an external method (eg. TCP status server)
+Each UDP packet would start with a 1 byte header representing the type of data that would be transmitted.
+
+| Header | Type |
+|-|-|
+| 1 | Data points |
+| 2 | Transformations |
+
+## Data points
+
+After the header, the packet would consist of multiple segments of data points, with each data point consisting of 3 IEEE-754 floats representing the absolute X, Y and Z coordinate of the data point. The float values can either be binary32 or binary64, which should be agreed upon between the client and server via an external method (eg. TCP status server)
 The absolute zero point (0, 0, 0) within the tracking system is determined by the server.
 
 For example, tracking an object with 3 data points using binary64 would result in the following UDP packet being sent:
@@ -36,6 +45,12 @@ Tracking another object with 2 data points using binary32 would result in the fo
 | 13 | 16 | Data Point 2, X coordinate |
 | 17 | 20 | Data Point 2, Y coordinate |
 | 21 | 24 | Data Point 2, Z coordinate |
+
+## Transformations
+
+After the header, the packet would consist of consecutive IEEE-754 floats representing the transformation required for a specific feature (eg. facial expressions). The float values can either be binary32 or binary64, which should be agreed upon between the client and server via an external method (eg. TCP status server).
+
+## Calculator
 
 A calculator to calculate the required ethernet capacity as well as the maximum possible sample rate could be found [here](./motion-calculator.html).
 
