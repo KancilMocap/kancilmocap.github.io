@@ -38,7 +38,7 @@ FFFF module codes are reserved for internal communications in servers and client
 | Byte | Designation | Contents |
 |-|-|-|
 | 0010 | Returns of the block of codes is blocked | 2 bytes response on whether the block is password protected, as well as the type of hashing required |
-| 0011 | Returns whether the block access is granted | 1 byte response on whether access has been granted for the block |
+| 0011 | Returns whether the block access is granted | 1 byte response on whether access has been granted for the block (\0 means granted, anything else means denied) |
 | 0012 | Returns motherboard information | String containing motherboard information |
 | 0013 | Returns CPU information | String containing CPU information |
 | 0014 | Returns GPU information | String containing GPU information |
