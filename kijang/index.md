@@ -7,7 +7,9 @@ Kijang is the main backend that would be use to process all the sensory inputs a
 The following pages contain information about the protocol for packets that are used to transfer information between Kijang and other application in the communication port.
 
 - [Protocol](./tcp-protocol)
-- [Modules](./tcp-modules)
+- [System Modules](./tcp-module-system)
+- [KancilMocap Modules](./tcp-module-kancilmocap)
+- [Module Implementations](./tcp-module-implementations)
 
 ## Sensory Protocols
 
