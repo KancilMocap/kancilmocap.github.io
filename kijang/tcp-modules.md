@@ -32,7 +32,7 @@ FFFF module codes are reserved for internal communications in servers and client
 | 0004 | Returns server name | String containing server name |
 | 0005 | Returns server version | String containing semver compliant server version |
 | 000E | Disconnects client | - |
-| 000F | Reserver | - |
+| 000F | Reserved | - |
 
 - Once 000E is sent, future requests from the client would be ignored.
 
@@ -118,8 +118,8 @@ FFFF module codes are reserved for internal communications in servers and client
 
 | Byte | Designation | Contents |
 |-|-|-|
-| 0000 | Returns of the block of codes is blocked | 2 bytes response on whether the block is password protected, as well as the type of hashing required |
-| 0001 | Returns whether the block access is granted | 1 byte response on whether access has been granted for the block |
+| 0000 | Reserved | - |
+| 0001 | Reserved | - |
 | 0002 | Returns all available audio, video and motion devices | See below |
 | 0003 | Returns all available audio devices | Multiple 6+n bytes sequence, first 4 bytes is audio device ID, next n bytes is audio device preset, last 2 bytes is uint16 representing UDP port |
 | 0004 | Returns all available video devices | Multiple 6+n bytes sequence, first 4 bytes is video device ID, next n bytes is video device preset, last 2 bytes is uint16 representing UDP port |
@@ -174,8 +174,8 @@ For instance, the response would start with the byte size of response 0003 follo
 
 | Byte | Designation | Contents |
 |-|-|-|
-| 0000 | Request whether the block of codes is blocked | - |
-| 0001 | Request access to block | 2 bytes on the type of hashing used, remaining bytes is hashed password |
+| 0000 | Reserved | - |
+| 0001 | Reserved | - |
 | 0002 | Request all available audio, video and motion devices | TBD |
 | 0003 | Request all available audio devices | - |
 | 0004 | Request all available video devices | - |
