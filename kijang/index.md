@@ -2,14 +2,16 @@
 
 Kijang is the main backend that would be use to process all the sensory inputs and convert them into motion outputs.
 
-## TCP Protocol
+## Modular TCP Information Transfer Protocol
 
-The following pages contain information about the protocol for packets that are used to transfer information between Kijang and other application in the communication port.
+The following pages contain information about the protocol for packets that are used to transfer information via a single TCP port.
 
 - [Protocol](./tcp-protocol)
 - [System Modules](./tcp-module-system)
 - [KancilMocap Modules](./tcp-module-kancilmocap)
 - [Module Implementations](./tcp-module-implementations)
+
+All servers that use the TCP protocol are expected to handle requests from clients for codes in the system module and respond accordingly. Similarly, this protocol is not limited in its usage within the KancilMocap system, and can be used to transfer data between other applications on the same server and client.
 
 ## Sensory Protocols
 
