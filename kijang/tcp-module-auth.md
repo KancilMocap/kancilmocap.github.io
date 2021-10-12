@@ -8,6 +8,14 @@ Server requirement: Empty response
 
 Client request: None
 
+## Always Deny Access
+
+2 byte requirement: FFFF
+
+Server requirement: None
+
+Client request: None
+
 ## Plaintext
 
 2 byte requirement: 0001
