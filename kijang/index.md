@@ -9,6 +9,7 @@ The following pages contain information about the protocol for packets that are 
 - [Protocol](./tcp-protocol)
 - [System Modules](./tcp-module-system)
 - [KancilMocap Modules](./tcp-module-kancilmocap)
+- [Module Authentication](./tcp-module-auth)
 - [Module Implementation](https://docs.google.com/spreadsheets/d/1Sq6EpBsYsZIn28BhSFvsJMJmWTyCYuu_7-Skr5m-gWw/edit?usp=sharing).
 
 All servers that use the TCP protocol are expected to handle requests from clients for codes in the system module and respond accordingly. Similarly, this protocol is not limited in its usage within the KancilMocap system, and can be used to transfer data between other applications on the same server and client.
