@@ -37,7 +37,7 @@ FFFF module codes are reserved for internal communications in servers and client
 
 | Byte | Designation | Contents |
 |-|-|-|
-| 0010 | Returns of the block of codes is blocked | 2 bytes response on whether the block is password protected, as well as the type of hashing required |
+| 0010 | Returns of the block of codes is blocked | [Auth requirement](./tcp-module-auth) |
 | 0011 | Returns whether the block access is granted | 1 byte response on whether access has been granted for the block (\0 means granted, anything else means denied) |
 | 0012 | Returns motherboard information | String containing motherboard information |
 | 0013 | Returns CPU information | String containing CPU information |
@@ -91,7 +91,7 @@ FFFF module codes are reserved for internal communications in servers and client
 | Byte | Designation | Contents |
 |-|-|-|
 | 0010 | Request whether the block of codes is blocked | - |
-| 0011 | Request access to block | 2 bytes on the type of hashing used, remaining bytes is hashed password |
+| 0011 | Request access to block | [Auth request](./tcp-module-auth) |
 | 0012 | Request motherboard information | - |
 | 0013 | Request CPU information | - |
 | 0014 | Request GPU information | - |
