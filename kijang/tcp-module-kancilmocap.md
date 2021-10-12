@@ -39,7 +39,7 @@ For instance, the response would start with the byte size of response 0003 follo
 
 | Byte | Designation | Contents |
 |-|-|-|
-| 0010 | Returns of the block of codes is blocked | 2 bytes response on whether the block is password protected, as well as the type of hashing required |
+| 0010 | Returns of the block of codes is blocked | [Auth requirement](./tcp-module-auth) |
 | 0011 | Returns whether the block access is granted | 1 byte response on whether access has been granted for the block |
 | 0012 | Reserved | - |
 | 0013 | Returns port for audio device to bind to | 2 bytes representing uint16 port number |
@@ -53,7 +53,7 @@ For instance, the response would start with the byte size of response 0003 follo
 
 | Byte | Designation | Contents |
 |-|-|-|
-| 0020 | Returns of the block of codes is blocked | 2 bytes response on whether the block is password protected, as well as the type of hashing required |
+| 0020 | Returns of the block of codes is blocked | [Auth requirement](./tcp-module-auth) |
 | 0021 | Returns whether the block access is granted | 1 byte response on whether access has been granted for the block |
 | 0022 | Returns all plugins on Kijang | A JSON file containing the metadata of all plugins currently installed on the server |
 | 0023 | Returns metadata on the specified plugin on Kijang | A JSON file containing the metadata of the plugin specified, returns nothing if the plugin is not installed |
@@ -88,7 +88,7 @@ For instance, the response would start with the byte size of response 0003 follo
 | Byte | Designation | Contents |
 |-|-|-|
 | 0010 | Request whether the block of codes is blocked | - |
-| 0011 | Request access to block | 2 bytes on the type of hashing used, remaining bytes is hashed password |
+| 0011 | Request access to block | [Auth request](./tcp-module-auth) |
 | 0012 | Reserved | - |
 | 0013 | Request to add audio device | n bytes representing audio device preset |
 | 0014 | Request to add video device | n bytes representing video device preset |
@@ -104,7 +104,7 @@ n is TBD.
 | Byte | Designation | Contents |
 |-|-|-|
 | 0020 | Request whether the block of codes is blocked | - |
-| 0021 | Request access to block | 2 bytes on the type of hashing used, remaining bytes is hashed password |
+| 0021 | Request access to block | [Auth response](./tcp-module-auth) |
 | 0022 | Request all plugins on Kijang | - |
 | 0023 | Request metadata on the specified plugin on Kijang | 4 bytes representing ID of plugin |
 | 0024 | Request enabling / disabling plugins and its dependencies | 4 bytes representing ID of plugin, followed by 1 byte on whether to enable / disable it |
