@@ -48,9 +48,9 @@ For instance, the response would start with the byte size of response 0003 follo
 | 0010 | Returns of the block of codes is blocked | [Auth requirement](./tcp-module-auth) |
 | 0011 | Returns whether the block access is granted | 1 byte response on whether access has been granted for the block |
 | 0012 | Reserved | - |
-| 0013 | Audio device addition acknowledged | 4 bytes representing audio device ID |
-| 0014 | Video device addition acknowledged | 4 bytes representing video device ID |
-| 0015 | Motion device addition acknowledged | 4 bytes representing motion device ID |
+| 0013 | Audio device addition acknowledged | 2 bytes representing uint16 receiving port number, 4 bytes representing audio device ID |
+| 0014 | Video device addition acknowledged | 2 bytes representing uint16 receiving port number, 4 bytes representing video device ID |
+| 0015 | Motion device addition acknowledged | 2 bytes representing uint16 receiving port number, 4 bytes representing motion device ID |
 | 0016 | Audio device removal acknowledged | - |
 | 0017 | Video device removal acknowledged | - |
 | 0018 | Motion device removal acknowledged | - |
@@ -102,9 +102,9 @@ For instance, the response would start with the byte size of response 0003 follo
 | 0010 | Request whether the block of codes is blocked | - |
 | 0011 | Request access to block | [Auth request](./tcp-module-auth) |
 | 0012 | Reserved | - |
-| 0013 | Request to add audio device | 2 bytes representing uint16 port number, n bytes representing audio device preset |
-| 0014 | Request to add video device | 2 bytes representing uint16 port number, n bytes representing video device preset |
-| 0015 | Request to add motion device | 2 bytes representing uint16 port number, 4 bytes representing motion device preset |
+| 0013 | Request to add audio device | n bytes representing audio device preset |
+| 0014 | Request to add video device | n bytes representing video device preset |
+| 0015 | Request to add motion device | 4 bytes representing motion device preset |
 | 0016 | Request to remove audio device | 4 bytes representing audio device ID |
 | 0017 | Request to remove video device | 4 bytes representing video device ID |
 | 0018 | Request to remove motion device | 4 bytes representing motion device ID |
