@@ -15,6 +15,8 @@ The following modules are used in KancilMocap applications, such as Kijang, Pila
 | 0000 | 000F | Output IO devices |
 | 0010 | 001F | Input IO devices |
 | 0020 | 002F | Plugin management |
+| F000 | F0FF | Generic Error |
+| F100 | F1FF | Plugin System Errors |
 
 ### Output IO Devices
 
@@ -69,6 +71,29 @@ For instance, the response would start with the byte size of response 0003 follo
 | 0025 | Returns port for plugin data to be transferred | 1 byte representing whether request is approved, followed by 2 bytes representing uint16 port number |
 | 0026 | Returns status of offline plugin installation | 1 byte representing status of plugin install, followed by its corresponding error if any |
 | 0027 | Acknowleges the request to delete the specified plugin | 1 byte response on whether the plugin was successfully removed, followed by its corresponding error if any |
+
+### Generic Error
+
+| Byte | Designation | Contents |
+|-|-|-|
+| F000 | Request denied by server | - |
+| F001 | Unauthorized client | - |
+| F002 | Unable to access port specified by client | - |
+| F003 | No data received from port specified by client | - |
+| F004 | Max outgoing connections reached for server | - |
+
+### Plugin System Errors
+
+| Byte | Designation | Contents |
+|-|-|-|
+| F100 | Plugin not found | 4 bytes representing ID of plugin |
+| F101 | Unable to write changes to server | 4 bytes representing ID of plugin |
+| F102 | Unable to reach URL | 4 bytes representing ID of plugin, remaining are UTF-8 string of URL |
+| F103 | URL is not valid plugin file | 4 bytes representing ID of plugin, remaining are UTF-8 string of URL |
+| F104 |File transfer failed | 4 bytes representing ID of plugin |
+| F105 | File transferred is not valid plugin file | 4 bytes representing ID of plugin |
+| F106 | Plugin contains circular dependencies | 4 bytes representing ID of plugin |
+| F107 | Plugin dependencies not found | 4 bytes representing ID of plugin, remaining bytes are IDs of the missing dependencies |
 
 ## Pilanduk / KancilMocap - 7FFD/7FFE
 
