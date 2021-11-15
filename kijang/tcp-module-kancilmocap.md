@@ -23,9 +23,15 @@ The following modules are used in KancilMocap applications, such as Kijang, Pila
 | 0000 | Reserved | - |
 | 0001 | Reserved | - |
 | 0002 | Returns all available audio, video and motion devices | See below |
-| 0003 | Returns all available audio devices | Multiple 6+n bytes sequence, first 4 bytes is audio device ID, next n bytes is audio device preset, last 2 bytes is uint16 representing UDP port |
-| 0004 | Returns all available video devices | Multiple 6+n bytes sequence, first 4 bytes is video device ID, next n bytes is video device preset, last 2 bytes is uint16 representing UDP port |
-| 0005 | Returns all available motion devices | Multiple 10 bytes sequence, first 4 bytes is motion device ID, next 4 bytes is motion device preset, last 2 bytes is uint16 representing UDP port |
+| 0003 | Returns all available audio devices | Multiple 4+n bytes sequence, first 4 bytes is audio device ID, next n bytes is audio device preset |
+| 0004 | Returns all available video devices | Multiple 4+n bytes sequence, first 4 bytes is video device ID, next n bytes is video device preset |
+| 0005 | Returns all available motion devices | Multiple 8 bytes sequence, first 4 bytes is motion device ID, next 4 bytes is motion device preset |
+| 0006 | Start streaming audio device request acknowledged | - |
+| 0007 | Start streaming video device request acknowledged | - |
+| 0008 | Start streaming motion device request acknowledged | - |
+| 0009 | Stop streaming audio device request acknowledged | - |
+| 000A | Stop streaming video device request acknowledged | - |
+| 000B | Stop streaming motion device request acknowledged | - |
 
 n is currently TBD.
 
@@ -42,9 +48,9 @@ For instance, the response would start with the byte size of response 0003 follo
 | 0010 | Returns of the block of codes is blocked | [Auth requirement](./tcp-module-auth) |
 | 0011 | Returns whether the block access is granted | 1 byte response on whether access has been granted for the block |
 | 0012 | Reserved | - |
-| 0013 | Returns port for audio device to bind to | 2 bytes representing uint16 port number |
-| 0014 | Returns port for video device to bind to | 2 bytes representing uint16 port number |
-| 0015 | Returns port for motion device to bind to | 2 bytes representing uint16 port number |
+| 0013 | Audio device addition acknowledged | 4 bytes representing audio device ID |
+| 0014 | Video device addition acknowledged | 4 bytes representing video device ID |
+| 0015 | Motion device addition acknowledged | 4 bytes representing motion device ID |
 | 0016 | Audio device removal acknowledged | - |
 | 0017 | Video device removal acknowledged | - |
 | 0018 | Motion device removal acknowledged | - |
@@ -82,6 +88,12 @@ For instance, the response would start with the byte size of response 0003 follo
 | 0003 | Request all available audio devices | - |
 | 0004 | Request all available video devices | - |
 | 0005 | Request all available motion devices | - |
+| 0006 | Request to stream data for specific audio device | 2 bytes representing uint16 receiving port number, 4 bytes representing audio device ID |
+| 0007 | Request to stream data for specific video device | 2 bytes representing uint16 receiving port number, 4 bytes representing video device ID |
+| 0008 | Request to stream data for specific motion device | 2 bytes representing uint16 receiving port number, 4 bytes representing motion device ID |
+| 0009 | Request to stop streaming data for specific audio device | 4 bytes representing audio device ID |
+| 000A | Request to stop streaming data for specific video device | 4 bytes representing video device ID |
+| 000B | Request to stop streaming data for specific motion device | 4 bytes representing motion device ID |
 
 ### Input IO Devices
 
@@ -90,12 +102,12 @@ For instance, the response would start with the byte size of response 0003 follo
 | 0010 | Request whether the block of codes is blocked | - |
 | 0011 | Request access to block | [Auth request](./tcp-module-auth) |
 | 0012 | Reserved | - |
-| 0013 | Request to add audio device | n bytes representing audio device preset |
-| 0014 | Request to add video device | n bytes representing video device preset |
-| 0015 | Request to add motion device | 4 bytes representing motion device preset |
-| 0016 | Request to remove audio device | 2 bytes representing uint16 port number |
-| 0017 | Request to remove video device | 2 bytes representing uint16 port number |
-| 0018 | Request to remove motion device | 2 bytes representing uint16 port number |
+| 0013 | Request to add audio device | 2 bytes representing uint16 port number, n bytes representing audio device preset |
+| 0014 | Request to add video device | 2 bytes representing uint16 port number, n bytes representing video device preset |
+| 0015 | Request to add motion device | 2 bytes representing uint16 port number, 4 bytes representing motion device preset |
+| 0016 | Request to remove audio device | 4 bytes representing audio device ID |
+| 0017 | Request to remove video device | 4 bytes representing video device ID |
+| 0018 | Request to remove motion device | 4 bytes representing motion device ID |
 
 n is TBD.
 
