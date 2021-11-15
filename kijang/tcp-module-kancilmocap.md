@@ -90,7 +90,7 @@ For instance, the response would start with the byte size of response 0003 follo
 | F101 | Unable to write changes to server | 4 bytes representing ID of plugin |
 | F102 | Unable to reach URL | 4 bytes representing ID of plugin, remaining are UTF-8 string of URL |
 | F103 | URL is not valid plugin file | 4 bytes representing ID of plugin, remaining are UTF-8 string of URL |
-| F104 |File transfer failed | 4 bytes representing ID of plugin |
+| F104 | File transfer terminated unexpectedly | 4 bytes representing ID of plugin |
 | F105 | File transferred is not valid plugin file | 4 bytes representing ID of plugin |
 | F106 | Plugin contains circular dependencies | 4 bytes representing ID of plugin |
 | F107 | Plugin dependencies not found | 4 bytes representing ID of plugin, remaining bytes are IDs of the missing dependencies |
