@@ -7,8 +7,6 @@ The following module codes are designated for the following modules:
 | 7FFF | Control module (client) |
 | FFFF | Control module (server) |
 
-FFFF module codes are reserved for internal communications in servers and clients respectively. Once the request is received, the server / client will wait until a response is received, or until a timeout is received.
-
 ## Control Module (Server) - FFFF
 
 | Start | End | Designation |
