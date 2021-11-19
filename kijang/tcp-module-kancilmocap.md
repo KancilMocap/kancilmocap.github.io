@@ -1,11 +1,10 @@
 # KancilMocap Modules
 
-The following modules are used in KancilMocap applications, such as Kijang, Pilanduk and KancilMocap.
+The following modules are used in KancilMocap applications, such as Kijang, Pilandok and KancilMocap.
 
 | Module code | Designation |
 |-|-|
-| 7FFD | KancilMocap |
-| 7FFE | Pilanduk |
+| 7FFE | KancilMocap / Pilandok |
 | FFFE | Kijang |
 
 ## Kijang - FFFE
@@ -95,7 +94,7 @@ For instance, the response would start with the byte size of response 0003 follo
 | F106 | Plugin contains circular dependencies | 4 bytes representing ID of plugin |
 | F107 | Plugin dependencies not found | 4 bytes representing ID of plugin, remaining bytes are IDs of the missing dependencies |
 
-## Pilanduk / KancilMocap - 7FFD/7FFE
+## KancilMocap / Pilandok - 7FFE
 
 | Start | End | Designation |
 |-|-|-|
