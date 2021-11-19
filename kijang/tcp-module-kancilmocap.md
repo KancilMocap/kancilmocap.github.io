@@ -6,9 +6,9 @@ The following modules are used in KancilMocap applications, such as Kijang, Pila
 |-|-|
 | 7FFD | KancilMocap |
 | 7FFE | Pilanduk |
-| FFFD | Kijang |
+| FFFE | Kijang |
 
-## Kijang - FFFD
+## Kijang - FFFE
 
 | Start | End | Designation |
 |-|-|-|
