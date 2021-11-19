@@ -57,9 +57,9 @@ FFFF module codes are reserved for internal communications in servers and client
 | F000 | Generic error | String of error |
 | F001 | Invalid client ID | - |
 | F002 | Invalid module | - |
-| F003 | Unix time out of sync | int64 representing duration that the client is off by |
+| F003 | Invalid code | - |
 | F004 | Invalid request parameters | - |
-| F005 | Timeout | uint32 representing duration that the client would be timed out for (in ms) |
+| F005 | Timeout | uint32 representing unix time at end of timeout (in ms) |
 | F006 | Permission denied |
 
 ## Control Module (Client) - 7FFF
