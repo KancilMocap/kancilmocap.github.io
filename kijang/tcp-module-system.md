@@ -5,12 +5,11 @@ The following module codes are designated for the following modules:
 | Module code | Designation |
 |-|-|
 | 7FFF | Control module (client) |
-| FFFE | Control module (server) |
-| FFFF | Async response (internal) |
+| FFFF | Control module (server) |
 
 FFFF module codes are reserved for internal communications in servers and clients respectively. Once the request is received, the server / client will wait until a response is received, or until a timeout is received.
 
-## Control Module (Server) - FFFE
+## Control Module (Server) - FFFF
 
 | Start | End | Designation |
 |-|-|-|
