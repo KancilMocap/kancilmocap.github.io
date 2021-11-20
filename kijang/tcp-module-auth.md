@@ -1,6 +1,6 @@
 # Authentication Methods
 
-The first 2 bytes would be used to describe the authentication method, and the remaining bytes would be used to describe the authentication requirement. All numbers reference below are in big endian for readability. All purpose octets should use the value 0xC9 (201 in base 10).
+Authentication can be used between client and server to access specific blocks. For internal communication between server modules / client modules, no authentication is required. The first 2 bytes would be used to describe the authentication method, and the remaining bytes would be used to describe the authentication requirement. All numbers reference below are in big endian for readability. All purpose octets should use the value 0xC9 (201 in base 10).
 
 ## None
 
