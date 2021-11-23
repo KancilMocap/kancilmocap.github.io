@@ -20,7 +20,7 @@ The following module codes are designated for the following modules:
 | Byte | Designation | Contents |
 |-|-|-|
 | 0000 | Generic response | String of response |
-| 0001 | Provision of Client ID | Client ID |
+| 0001 | Reserved | - |
 | 0002 | (Client -> Server) Pong | - |
 | 0003 | (Server -> Client) Ping | - |
 | 0004 | Returns server name | String containing server name |
@@ -72,7 +72,7 @@ The following module codes are designated for the following modules:
 | Byte | Designation | Contents |
 |-|-|-|
 | 0000 | Generic response | String of response |
-| 0001 | Request Client ID | - |
+| 0001 | Reserved | - |
 | 0002 | (Client -> Server) Ping | - |
 | 0003 | (Server -> Client) Pong | - |
 | 0004 | Request server name | - |
