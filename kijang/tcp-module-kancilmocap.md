@@ -62,14 +62,9 @@ For instance, the response would start with the byte size of response 0003 follo
 |-|-|-|
 | 0020 | Returns of the block of codes is blocked | [Auth requirement](./tcp-module-auth) |
 | 0021 | Returns whether the block access is granted | 1 byte response on whether access has been granted for the block |
-| 0022 | Returns all plugins on Kijang | A JSON file containing the metadata of all plugins currently installed on the server |
-| 0023 | Returns metadata on the specified plugin on Kijang | A JSON file containing the metadata of the plugin specified, returns nothing if the plugin is not installed |
-| 0024 | Acknowleges the request to enable / disable the specified plugin | 1 byte response on whether the plugin was successfully enabled or disabled, followed by its corresponding error if any |
-| 0025 | Returns type of plugin needed (.dll, .dylib, .so) | 1 byte response on the type of plugin needed |
-| 0024 | Returns status of online plugin installation | 1 byte representing status of plugin install, followed by its corresponding error if any |
-| 0025 | Returns port for plugin data to be transferred | 1 byte representing whether request is approved, followed by 2 bytes representing uint16 port number |
-| 0026 | Returns status of offline plugin installation | 1 byte representing status of plugin install, followed by its corresponding error if any |
-| 0027 | Acknowleges the request to delete the specified plugin | 1 byte response on whether the plugin was successfully removed, followed by its corresponding error if any |
+| 0022 | Returns all plugins on Kijang as JSON | A JSON file containing the metadata of all plugins currently installed on the server |
+| 0023 | Returns all plugins on Kijang as hex string | Multiple 4 bytes sequence representing ID of plugins |
+| 0024 | Returns metadata on the specified plugin on Kijang | A JSON file containing the metadata of the plugin specified, returns nothing if the plugin is not installed |
 
 ### Generic Error
 
@@ -86,13 +81,6 @@ For instance, the response would start with the byte size of response 0003 follo
 | Byte | Designation | Contents |
 |-|-|-|
 | F100 | Plugin not found | 4 bytes representing ID of plugin |
-| F101 | Unable to write changes to server | 4 bytes representing ID of plugin |
-| F102 | Unable to reach URL | 4 bytes representing ID of plugin, remaining are UTF-8 string of URL |
-| F103 | URL is not valid plugin file | 4 bytes representing ID of plugin, remaining are UTF-8 string of URL |
-| F104 | File transfer terminated unexpectedly | 4 bytes representing ID of plugin |
-| F105 | File transferred is not valid plugin file | 4 bytes representing ID of plugin |
-| F106 | Plugin contains circular dependencies | 4 bytes representing ID of plugin |
-| F107 | Plugin dependencies not found | 4 bytes representing ID of plugin, remaining bytes are IDs of the missing dependencies |
 
 ## KancilMocap / Pilandok - 7FFE
 
@@ -141,11 +129,6 @@ n is TBD.
 |-|-|-|
 | 0020 | Request whether the block of codes is blocked | - |
 | 0021 | Request access to block | [Auth response](./tcp-module-auth) |
-| 0022 | Request all plugins on Kijang | - |
-| 0023 | Request metadata on the specified plugin on Kijang | 4 bytes representing ID of plugin |
-| 0024 | Request enabling / disabling plugins and its dependencies | 4 bytes representing ID of plugin, followed by 1 byte on whether to enable / disable it |
-| 0025 | Request type of plugin needed (.dll, .dylib, .so) | - |
-| 0024 | Request online plugin installation | URL of repository for plugin, or pointing towards a .dll, .dylib or .so file |
-| 0025 | Request pysical plugin transfer | 4 bytes representing ID of plugin, 1 byte representing type of plugin, 1 byte representing hash type, remaining data is hash of resulting data |
-| 0026 | Reserved | - |
-| 0027 | Delete specific plugin | 4 bytes representing ID of plugin |
+| 0022 | Request all plugins on Kijang as JSON | - |
+| 0023 | Request all plugins on Kijang as hex list | - |
+| 0024 | Request metadata on the specified plugin on Kijang | 4 bytes representing ID of plugin |
