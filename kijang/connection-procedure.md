@@ -7,3 +7,5 @@ The proper procedures for connecting to a Kijang-compatible server are as follow
 3. The client would connect to the write port of the server.
 4. The client sends 4 bytes representing its ID to the write port of the server.
 4a. If the client does not send the appropiate response within a specific interval (default is 5 seconds), the server will kick the client off the write port but the client at the read port would still be online. The client may choose to disconnect or try to connect to the write server again. In Pilandok and KancilMocap, the client would disconnect once the write client has been terminated.
+
+Note: Appropiate measures should be taken to ensure that the read and write client are from the same device. Currently, the server would check if the IP address of the read and write client matches.
